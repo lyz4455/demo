@@ -105,4 +105,38 @@ public class LeetcodeOne {
             }
         }
     }
+
+    /**
+     * 3
+     */
+    class Solution3 {
+        public int lengthOfLongestSubstring(String s) {
+            if (s.length() < 2) {
+                return s.length();
+            }
+            int left = 0;
+            int right = 1;
+            int res = 1;
+            int lenTem;
+            while (right < s.length()) {
+                int pos = s.indexOf(s.charAt(right), left);
+                if (pos < right) {
+                    int len = right - left;
+                    if (len > res) {
+                        res = len;
+                    }
+                    left = pos + 1;
+                    right++;
+                } else {
+                    lenTem = right - left + 1;
+                    right++;
+
+                    if (lenTem > res) {
+                        res = lenTem;
+                    }
+                }
+            }
+            return res;
+        }
+    }
 }
