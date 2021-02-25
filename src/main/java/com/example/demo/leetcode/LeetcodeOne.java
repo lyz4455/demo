@@ -139,4 +139,129 @@ public class LeetcodeOne {
             return res;
         }
     }
+
+    /**
+     * 5
+     */
+    static class Solution5 {
+        //        public static String longestPalindrome1(String s) {
+//            if (s.length() < 2) {
+//                return s;
+//            }
+//            int maxLen = 1;
+//            int start = 0;
+//            int end = 0;
+//
+//            int leftTemp;
+//            int rightTemp;
+//            int left;
+//            int right;
+//            for (int i = 0; i < s.length(); i++) {
+//                for (int j = s.length() - 1; j > 0; j--) {
+//                    left = i;
+//                    if (s.charAt(left) != s.charAt(j)) {
+//                        continue;
+//                    } else {
+//                        right = j;
+//                        leftTemp = left;
+//                        rightTemp = right;
+//                        if (right <= left) {
+//                            continue;
+//                        }
+//                        while (left < right - 1) {
+//                            left++;
+//                            right--;
+//                            if (left == right) {
+//                                int len = rightTemp - leftTemp + 1;
+//                                if (len > maxLen) {
+//                                    start = leftTemp;
+//                                    end = rightTemp;
+//                                    maxLen = len;
+//                                }
+//                            }
+//                            if (s.charAt(left) != s.charAt(right)) {
+//                                break;
+//                            }
+//                        }
+//                        if (left == right - 1) {
+//                            if (s.charAt(left) != s.charAt(right)) {
+//                                continue;
+//                            }
+//                            int len = rightTemp - leftTemp + 1;
+//                            if (len > maxLen) {
+//                                start = leftTemp;
+//                                end = rightTemp;
+//                                maxLen = len;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            return s.substring(start, end + 1);
+//        }
+        public String longestPalindrome(String s) {
+            if (s.length() < 2) {
+                return s;
+            }
+            int maxLen = 1;
+            int start = 0;
+            int end = 0;
+            for (int i = 0; i < s.length(); i++) {
+                int len1 = expandAroundCenter(s, i, i);
+                int len2 = expandAroundCenter(s, i, i + 1);
+                int len = Math.max(len1, len2);
+                if (len > maxLen) {
+                    start = i - (len - 1) / 2;
+                    end = i + len / 2;
+                    maxLen = len;
+                }
+
+            }
+            return s.substring(start, end + 1);
+
+        }
+
+        public int expandAroundCenter(String s, int left, int right) {
+            while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+                --left;
+                ++right;
+            }
+            return right - left - 1;
+        }
+    }
+
+    /**
+     * 7
+     */
+    static class Solution7 {
+        public static int reverse(int x) {
+            String c = Integer.toString(x);
+            String res;
+            if (x >= 0) {
+                res = reverseStr(c);
+            } else {
+                c = c.substring(1);
+                res = "-" + reverseStr(c);
+            }
+            try {
+                return Integer.parseInt(res);
+            }catch (Exception ex){
+                return 0;
+            }
+        }
+
+        public static String reverseStr(String x) {
+            String res ="";
+            for (int i = x.length() - 1; i >= 0; i--) {
+                res += x.substring(i, i + 1);
+            }
+            return res;
+
+        }
+
+        public static void main(String[] args) {
+
+            System.out.println(reverse(1534236469));
+        }
+    }
 }
