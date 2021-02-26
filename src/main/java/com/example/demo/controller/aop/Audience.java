@@ -19,6 +19,7 @@ public class Audience {
     public void silenceCellPhone(){
         System.out.println("关闭手机");
     }
+
     @Before("performance()")
     public void takeSeats(){
         System.out.println("坐座位");
