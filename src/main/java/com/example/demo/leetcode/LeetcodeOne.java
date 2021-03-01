@@ -235,33 +235,16 @@ public class LeetcodeOne {
      */
     static class Solution7 {
         public static int reverse(int x) {
-            String c = Integer.toString(x);
-            String res;
-            if (x >= 0) {
-                res = reverseStr(c);
-            } else {
-                c = c.substring(1);
-                res = "-" + reverseStr(c);
+            long res = 0;
+            while (x != 0){
+                int b = x % 10;
+                if(res * 10 + b >Integer.MAX_VALUE || res * 10 + b <Integer.MIN_VALUE ){
+                    return 0;
+                }
+                res = res * 10 + b;
+                x = x/10;
             }
-            try {
-                return Integer.parseInt(res);
-            }catch (Exception ex){
-                return 0;
-            }
-        }
-
-        public static String reverseStr(String x) {
-            String res ="";
-            for (int i = x.length() - 1; i >= 0; i--) {
-                res += x.substring(i, i + 1);
-            }
-            return res;
-
-        }
-
-        public static void main(String[] args) {
-
-            System.out.println(reverse(1534236469));
+            return (int)res;
         }
     }
 }
