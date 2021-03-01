@@ -231,20 +231,51 @@ public class LeetcodeOne {
     }
 
     /**
+     * 6
+     */
+    class Solution6 {
+        public String convert(String s, int numRows) {
+            int len = s.length();
+            if (len <= numRows) {
+                return s;
+            }
+            int turns = len / (numRows + numRows - 2);
+            if(len % (numRows + numRows - 2) > 0){
+                turns ++;
+            }
+            int column = turns * (numRows - 1);
+            char[][] res = new char[numRows][column];
+            char[] chars = s.toCharArray();
+            for (int i = 0; i <chars.length; i++) {
+                int ss = i % (numRows + numRows - 2);
+                int turn = i / (numRows + numRows - 2);
+                int preCol = (turn-1) * (numRows - 1);
+                if(ss < numRows){
+                    res[1][preCol] = chars[i];
+                }
+
+            }
+
+
+
+        }
+    }
+
+    /**
      * 7
      */
     static class Solution7 {
         public static int reverse(int x) {
             long res = 0;
-            while (x != 0){
+            while (x != 0) {
                 int b = x % 10;
-                if(res * 10 + b >Integer.MAX_VALUE || res * 10 + b <Integer.MIN_VALUE ){
+                if (res * 10 + b > Integer.MAX_VALUE || res * 10 + b < Integer.MIN_VALUE) {
                     return 0;
                 }
                 res = res * 10 + b;
-                x = x/10;
+                x = x / 10;
             }
-            return (int)res;
+            return (int) res;
         }
     }
 }
