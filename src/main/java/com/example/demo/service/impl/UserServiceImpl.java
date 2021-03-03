@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author yanzhongliu
@@ -21,6 +22,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(int id){
         return userMapper.getUser(id);
+    }
+
+    @Override
+    public List<User> getUsers(){
+        return userMapper.getUsers();
     }
 
     @Override

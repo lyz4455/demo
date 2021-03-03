@@ -3,9 +3,11 @@ package com.example.demo.mapper;
 import com.example.demo.domain.User;
 import com.example.demo.config.CustomBaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author lyz4455
@@ -14,5 +16,7 @@ import com.example.demo.config.CustomBaseMapper;
 public interface UserMapper extends CustomBaseMapper<User> {
 
     User getUser(int id);
+
+    List<User> getUsers();
 
 }
