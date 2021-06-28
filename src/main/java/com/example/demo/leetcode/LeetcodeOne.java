@@ -1,9 +1,9 @@
 package com.example.demo.leetcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
+import java.util.*;
 
 /**
  * @author yanzhongliu
@@ -240,17 +240,17 @@ public class LeetcodeOne {
                 return s;
             }
             int turns = len / (numRows + numRows - 2);
-            if(len % (numRows + numRows - 2) > 0){
-                turns ++;
+            if (len % (numRows + numRows - 2) > 0) {
+                turns++;
             }
             int column = turns * (numRows - 1);
             char[][] res = new char[numRows][column];
             char[] chars = s.toCharArray();
-            for (int i = 0; i <chars.length; i++) {
+            for (int i = 0; i < chars.length; i++) {
                 int ss = i % (numRows + numRows - 2);
                 int turn = i / (numRows + numRows - 2);
-                int preCol = (turn-1) * (numRows - 1);
-                if(ss < numRows){
+                int preCol = (turn - 1) * (numRows - 1);
+                if (ss < numRows) {
                     res[1][preCol] = chars[i];
                 }
 
@@ -275,5 +275,190 @@ public class LeetcodeOne {
             }
             return (int) res;
         }
+    }
+
+    /**
+     * 151
+     */
+    static class Solution151 {
+
+        public String reverseWords(String s) {
+            List list = Arrays.asList(s.split(" "));
+            String res = "";
+            if (list != null) {
+                int size = list.size();
+                for (int i = size - 1; i >= 0; i--) {
+                    if (list.get(i) != null && !"".equals(list.get(i))) {
+                        res += " " + list.get(i);
+                    }
+                }
+                res = res.substring(1);
+            }
+            return res;
+        }
+
+        public static void main(String[] args) {
+            String s = " hello     world ";
+            Solution151 solution151 = new Solution151();
+            System.out.println(solution151.reverseWords(s));
+        }
+    }
+
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode() {}
+     * TreeNode(int val) { this.val = val; }
+     * TreeNode(int val, TreeNode left, TreeNode right) {
+     * this.val = val;
+     * this.left = left;
+     * this.right = right;
+     * }
+     * }
+     */
+    /**
+     * 226
+     */
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+    }
+
+    class Solution {
+        public TreeNode invertTree(TreeNode root) {
+            if (root == null) {
+                return null;
+            }
+            TreeNode left = invertTree(root.left);
+            TreeNode right = invertTree(root.right);
+            root.right = left;
+            root.left = right;
+            return root;
+
+        }
+    }
+}
+
+/**
+ * 35
+ */
+class Solution35 {
+    public static int searchInsert(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (nums[mid] >= target) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return right;
+    }
+
+
+    public static int binSearch(int[] nums, int target) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Solution35.searchInsert(new int[]{1, 3, 5, 6}, 7));
+    }
+}
+
+/**
+ * 88
+ */
+class Solution88 {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        for (int i = 0; i < n; i++) {
+            nums1[m + i] = nums2[i];
+        }
+        Arrays.sort(nums1);
+    }
+}
+
+/**
+ * 4
+ */
+class Solution4 {
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int[] r = new int[m + n];
+        for (int i = 0; i < m; i++) {
+            r[i] = nums1[i];
+        }
+        for (int i = 0; i < n; i++) {
+            r[m + i] = nums2[i];
+        }
+        Arrays.sort(r);
+        if (r.length % 2 == 0) {
+            return (double) (r[r.length / 2 - 1] + r[r.length / 2]) / 2;
+        } else {
+            return r[(r.length - 1) / 2];
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Solution4.findMedianSortedArrays(new int[]{1, 3}, new int[]{2}));
+    }
+}
+
+/**
+ * 11
+ */
+class Solution11 {
+    public static int maxArea(int[] height) {
+        int right = height.length - 1;
+        int res = 0;
+        int left = 0;
+        while (left < right) {
+            int temp = Integer.min(height[left], height[right]) * (right - left);
+            if (temp > res) {
+                res = temp;
+            }
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Solution11.maxArea(new int[]{2, 3, 4, 5, 18, 17, 6}));
     }
 }
