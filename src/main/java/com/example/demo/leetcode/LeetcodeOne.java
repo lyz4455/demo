@@ -1,7 +1,5 @@
 package com.example.demo.leetcode;
 
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -462,3 +460,5 @@ class Solution11 {
         System.out.println(Solution11.maxArea(new int[]{2, 3, 4, 5, 18, 17, 6}));
     }
 }
+
+

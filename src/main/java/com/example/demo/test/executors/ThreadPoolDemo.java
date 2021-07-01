@@ -1,7 +1,8 @@
 package com.example.demo.test.executors;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import java.util.concurrent.*;
 
 /**
  * @author yanzhongliu
@@ -10,28 +11,33 @@ import java.util.concurrent.Executors;
  */
 public class ThreadPoolDemo {
     public static void main(String[] args) {
-// 创建线程池对象
-        ExecutorService service = Executors.newFixedThreadPool(2);
-// 创建Runnable实例对象
+        // 创建线程池对象
+        //获取系统处理器个数，作为线程池数量
+        int nThreads = Runtime.getRuntime().availableProcessors();
+//        ExecutorService service = Executors.newFixedThreadPool(nThreads);
+
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+                .setNameFormat("demo-pool-%d").build();
+        //Common Thread Pool
+        ExecutorService service = new ThreadPoolExecutor(nThreads, nThreads*2,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(50), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+        // 创建Runnable实例对象
         MyRunnable r = new MyRunnable();
+        MyThread t = new MyThread();
+        MyCallable c = new MyCallable();
         try {
-            //自己创建线程对象的方式
-// Thread t = new Thread(r);
-// t.start(); ‐‐‐> 调用MyRunnable中的run()
-// 从线程池中获取线程对象,然后调用MyRunnable中的run()
             service.submit(r);
-// 再获取个线程对象，调用MyRunnable中的run()
-            service.submit(r);
-            service.submit(r);
-// 注意：submit方法调用结束后，程序并不终止，是因为线程池控制了线程的关闭。
+            service.execute(r);
+            Future a =service.submit(r);
+            Future b =service.submit(c);
+            service.submit(t);
+            service.submit(t);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             service.shutdown();
         }
-
-// 将使用完的线程又归还到了线程池中
-// 关闭线程池
-
     }
 }

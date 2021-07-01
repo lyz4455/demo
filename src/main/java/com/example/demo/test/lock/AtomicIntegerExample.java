@@ -1,7 +1,8 @@
 package com.example.demo.test.lock;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -19,16 +20,20 @@ public class AtomicIntegerExample {
 
         AtomicIntegerExample example = new AtomicIntegerExample();
 //        ExecutorService service = Executors.newFixedThreadPool(3);
-//
-//        service.execute(example.new RunnableA());
-//        service.execute(example.new RunnableB());
-//        service.execute(example.new RunnableC());
-//
-//        service.shutdown();
 
-        new Thread(example.new RunnableA()).start();
-        new Thread(example.new RunnableB()).start();
-        new Thread(example.new RunnableC()).start();
+        int nThreads = Runtime.getRuntime().availableProcessors();
+        ExecutorService service = new ThreadPoolExecutor(nThreads, nThreads*2,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>(1024));
+
+
+
+        service.execute(example.new RunnableA());
+        service.execute(example.new RunnableB());
+        service.execute(example.new RunnableC());
+
+        service.shutdown();
+
     }
 
     private class RunnableA implements Runnable {
