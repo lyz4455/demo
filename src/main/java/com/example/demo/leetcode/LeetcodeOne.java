@@ -294,12 +294,6 @@ public class LeetcodeOne {
             }
             return res;
         }
-
-        public static void main(String[] args) {
-            String s = " hello     world ";
-            Solution151 solution151 = new Solution151();
-            System.out.println(solution151.reverseWords(s));
-        }
     }
 
     /**
@@ -352,12 +346,11 @@ public class LeetcodeOne {
 
         }
     }
-}
 
 /**
  * 35
  */
-class Solution35 {
+static class Solution35 {
     public static int searchInsert(int[] nums, int target) {
         int left = 0;
         int right = nums.length;
@@ -410,7 +403,7 @@ class Solution88 {
 /**
  * 4
  */
-class Solution4 {
+static class Solution4 {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int m = nums1.length;
         int n = nums2.length;
@@ -437,7 +430,7 @@ class Solution4 {
 /**
  * 11
  */
-class Solution11 {
+static class Solution11 {
     public static int maxArea(int[] height) {
         int right = height.length - 1;
         int res = 0;
@@ -583,8 +576,6 @@ class Solution19 {
             }
         }
     }
-
-
 }
 
 
