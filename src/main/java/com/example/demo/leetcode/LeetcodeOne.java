@@ -294,12 +294,6 @@ public class LeetcodeOne {
             }
             return res;
         }
-
-        public static void main(String[] args) {
-            String s = " hello     world ";
-            Solution151 solution151 = new Solution151();
-            System.out.println(solution151.reverseWords(s));
-        }
     }
 
     /**
@@ -352,12 +346,11 @@ public class LeetcodeOne {
 
         }
     }
-}
 
 /**
  * 35
  */
-class Solution35 {
+static class Solution35 {
     public static int searchInsert(int[] nums, int target) {
         int left = 0;
         int right = nums.length;
@@ -410,7 +403,7 @@ class Solution88 {
 /**
  * 4
  */
-class Solution4 {
+static class Solution4 {
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int m = nums1.length;
         int n = nums2.length;
@@ -437,7 +430,7 @@ class Solution4 {
 /**
  * 11
  */
-class Solution11 {
+static class Solution11 {
     public static int maxArea(int[] height) {
         int right = height.length - 1;
         int res = 0;
@@ -459,6 +452,71 @@ class Solution11 {
     public static void main(String[] args) {
         System.out.println(Solution11.maxArea(new int[]{2, 3, 4, 5, 18, 17, 6}));
     }
+}/**
+ * Definition for singly-linked list.
+ public class ListNode {
+     int val;
+     ListNode next;
+     ListNode() {}
+     ListNode(int val) { this.val = val; }
+     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ }
+ */
+class Solution19 {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode index = head;
+        int count = 0;
+        while (index != null){
+            count++;
+            index = index.next;
+        }
+        if(count < n){
+            return head;
+        }
+       ListNode yummy = new ListNode(0,head);
+        int i = count - n + 1;
+        ListNode pre = yummy;
+        for (int j = 1; j < i ; ++j) {
+            pre = pre.next;
+        }
+        ListNode temp = pre.next;
+        pre.next = temp.next;
+        return yummy.next;
+    }
+
+    class Solution {
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            ListNode dummy = new ListNode(0, head);
+            int length = getLength(head);
+            ListNode cur = dummy;
+            for (int i = 1; i < length - n + 1; ++i) {
+                cur = cur.next;
+            }
+            cur.next = cur.next.next;
+            ListNode ans = dummy.next;
+            return ans;
+        }
+
+        public int getLength(ListNode head) {
+            int length = 0;
+            while (head != null) {
+                ++length;
+                head = head.next;
+            }
+            return length;
+        }
+    }
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+}
+
+
 
     class Solution32 {
 
@@ -540,8 +598,6 @@ class Solution11 {
             return dummy.next;
         }
     }
-
-
 }
 
 
