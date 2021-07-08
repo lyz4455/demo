@@ -314,24 +314,6 @@ public class LeetcodeOne {
     /**
      * 226
      */
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     class Solution {
         public TreeNode invertTree(TreeNode root) {
@@ -347,175 +329,186 @@ public class LeetcodeOne {
         }
     }
 
-/**
- * 35
- */
-static class Solution35 {
-    public static int searchInsert(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length;
-        while (left < right) {
-            int mid = (left + right) / 2;
-            if (nums[mid] >= target) {
-                right = mid;
+    /**
+     * 35
+     */
+    static class Solution35 {
+        public static int searchInsert(int[] nums, int target) {
+            int left = 0;
+            int right = nums.length;
+            while (left < right) {
+                int mid = (left + right) / 2;
+                if (nums[mid] >= target) {
+                    right = mid;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            return right;
+        }
+
+
+        public static int binSearch(int[] nums, int target) {
+            int left = 0;
+            int right = nums.length - 1;
+            while (left <= right) {
+                int mid = (left + right) / 2;
+                if (nums[mid] == target) {
+                    return mid;
+                }
+                if (nums[mid] < target) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+            return -1;
+        }
+
+        public static void main(String[] args) {
+            System.out.println(Solution35.searchInsert(new int[]{1, 3, 5, 6}, 7));
+        }
+    }
+
+    /**
+     * 88
+     */
+    class Solution88 {
+        public void merge(int[] nums1, int m, int[] nums2, int n) {
+            for (int i = 0; i < n; i++) {
+                nums1[m + i] = nums2[i];
+            }
+            Arrays.sort(nums1);
+        }
+    }
+
+    /**
+     * 4
+     */
+    static class Solution4 {
+        public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            int m = nums1.length;
+            int n = nums2.length;
+            int[] r = new int[m + n];
+            for (int i = 0; i < m; i++) {
+                r[i] = nums1[i];
+            }
+            for (int i = 0; i < n; i++) {
+                r[m + i] = nums2[i];
+            }
+            Arrays.sort(r);
+            if (r.length % 2 == 0) {
+                return (double) (r[r.length / 2 - 1] + r[r.length / 2]) / 2;
             } else {
-                left = mid + 1;
+                return r[(r.length - 1) / 2];
             }
         }
-        return right;
+
+        public static void main(String[] args) {
+            System.out.println(Solution4.findMedianSortedArrays(new int[]{1, 3}, new int[]{2}));
+        }
     }
 
-
-    public static int binSearch(int[] nums, int target) {
-        int left = 0;
-        int right = nums.length - 1;
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            if (nums[mid] == target) {
-                return mid;
+    /**
+     * 11
+     */
+    static class Solution11 {
+        public static int maxArea(int[] height) {
+            int right = height.length - 1;
+            int res = 0;
+            int left = 0;
+            while (left < right) {
+                int temp = Integer.min(height[left], height[right]) * (right - left);
+                if (temp > res) {
+                    res = temp;
+                }
+                if (height[left] < height[right]) {
+                    left++;
+                } else {
+                    right--;
+                }
             }
-            if (nums[mid] < target) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
+            return res;
         }
-        return -1;
-    }
 
-    public static void main(String[] args) {
-        System.out.println(Solution35.searchInsert(new int[]{1, 3, 5, 6}, 7));
-    }
-}
-
-/**
- * 88
- */
-class Solution88 {
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
-        for (int i = 0; i < n; i++) {
-            nums1[m + i] = nums2[i];
-        }
-        Arrays.sort(nums1);
-    }
-}
-
-/**
- * 4
- */
-static class Solution4 {
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int m = nums1.length;
-        int n = nums2.length;
-        int[] r = new int[m + n];
-        for (int i = 0; i < m; i++) {
-            r[i] = nums1[i];
-        }
-        for (int i = 0; i < n; i++) {
-            r[m + i] = nums2[i];
-        }
-        Arrays.sort(r);
-        if (r.length % 2 == 0) {
-            return (double) (r[r.length / 2 - 1] + r[r.length / 2]) / 2;
-        } else {
-            return r[(r.length - 1) / 2];
+        public static void main(String[] args) {
+            System.out.println(Solution11.maxArea(new int[]{2, 3, 4, 5, 18, 17, 6}));
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(Solution4.findMedianSortedArrays(new int[]{1, 3}, new int[]{2}));
-    }
-}
-
-/**
- * 11
- */
-static class Solution11 {
-    public static int maxArea(int[] height) {
-        int right = height.length - 1;
-        int res = 0;
-        int left = 0;
-        while (left < right) {
-            int temp = Integer.min(height[left], height[right]) * (right - left);
-            if (temp > res) {
-                res = temp;
-            }
-            if (height[left] < height[right]) {
-                left++;
-            } else {
-                right--;
-            }
-        }
-        return res;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Solution11.maxArea(new int[]{2, 3, 4, 5, 18, 17, 6}));
-    }
-}/**
- * Definition for singly-linked list.
- public class ListNode {
-     int val;
-     ListNode next;
-     ListNode() {}
-     ListNode(int val) { this.val = val; }
-     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- }
- */
-class Solution19 {
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode index = head;
-        int count = 0;
-        while (index != null){
-            count++;
-            index = index.next;
-        }
-        if(count < n){
-            return head;
-        }
-       ListNode yummy = new ListNode(0,head);
-        int i = count - n + 1;
-        ListNode pre = yummy;
-        for (int j = 1; j < i ; ++j) {
-            pre = pre.next;
-        }
-        ListNode temp = pre.next;
-        pre.next = temp.next;
-        return yummy.next;
-    }
-
-    class Solution {
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution19 {
         public ListNode removeNthFromEnd(ListNode head, int n) {
-            ListNode dummy = new ListNode(0, head);
-            int length = getLength(head);
-            ListNode cur = dummy;
-            for (int i = 1; i < length - n + 1; ++i) {
-                cur = cur.next;
+            ListNode index = head;
+            int count = 0;
+            while (index != null) {
+                count++;
+                index = index.next;
             }
-            cur.next = cur.next.next;
-            ListNode ans = dummy.next;
-            return ans;
+            if (count < n) {
+                return head;
+            }
+            ListNode yummy = new ListNode(0, head);
+            int i = count - n + 1;
+            ListNode pre = yummy;
+            for (int j = 1; j < i; ++j) {
+                pre = pre.next;
+            }
+            ListNode temp = pre.next;
+            pre.next = temp.next;
+            return yummy.next;
         }
 
-        public int getLength(ListNode head) {
-            int length = 0;
-            while (head != null) {
-                ++length;
-                head = head.next;
+        class Solution {
+            public ListNode removeNthFromEnd(ListNode head, int n) {
+                ListNode dummy = new ListNode(0, head);
+                int length = getLength(head);
+                ListNode cur = dummy;
+                for (int i = 1; i < length - n + 1; ++i) {
+                    cur = cur.next;
+                }
+                cur.next = cur.next.next;
+                ListNode ans = dummy.next;
+                return ans;
             }
-            return length;
+
+            public int getLength(ListNode head) {
+                int length = 0;
+                while (head != null) {
+                    ++length;
+                    head = head.next;
+                }
+                return length;
+            }
         }
-    }
-    public class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
 
-}
+        public class ListNode {
+            int val;
+            ListNode next;
 
+            ListNode() {
+            }
+
+            ListNode(int val) {
+                this.val = val;
+            }
+
+            ListNode(int val, ListNode next) {
+                this.val = val;
+                this.next = next;
+            }
+        }
+
+    }
 
 
     class Solution32 {
@@ -598,6 +591,112 @@ class Solution19 {
             return dummy.next;
         }
     }
+
+    /**
+     * 三数之和
+     */
+    static class Solution15 {
+        public static List<List<Integer>> threeSum(int[] nums) {
+            List<List<Integer>> res = new ArrayList<>();
+            Arrays.sort(nums);
+            int length = nums.length;
+            if (length < 3) {
+                return res;
+            }
+            for (int i = 0; i < length - 2; i++) {
+                if (i > 0 && nums[i] == nums[i - 1]) {
+                    continue;
+                }
+                int target = -nums[i];
+                int right = length - 1;
+                for (int j = i + 1; j < length - 1; j++) {
+                    if (j > i + 1 && nums[j] == nums[j - 1]) {
+                        continue;
+                    }
+                    while (nums[right] > target - nums[j] && j < right) {
+                        right--;
+                    }
+                    if (j == right) {
+                        break;
+                    }
+                    if (nums[j] + nums[right] == target) {
+                        List<Integer> item = new ArrayList<>();
+                        item.add(nums[i]);
+                        item.add(nums[j]);
+                        item.add(nums[right]);
+                        res.add(item);
+                    }
+                }
+            }
+            return res;
+        }
+    }
+
+    /**
+     * 有效括号 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+     */
+    class Solution20 {
+        public boolean isValid(String s) {
+            char[] chars = s.toCharArray();
+            if (chars.length % 2 == 1) {
+                return false;
+            }
+            Map<Character, Character> map = new HashMap<>(4);
+            map.put('(', ')');
+            map.put('{', '}');
+            map.put('[', ']');
+            Deque<Character> deque = new LinkedList<>();
+
+            for (char item : chars) {
+                if (map.containsKey(item)) {
+                    deque.push(item);
+                } else {
+                    if (deque.isEmpty() || item != map.get(deque.pop())) {
+                        return false;
+                    }
+                }
+            }
+            if (deque.isEmpty()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
+    }
+
+    /**
+     * 二叉树的中序遍历  递归
+     * 前序遍历：打印 - 左 - 右
+     * 中序遍历：左 - 打印 - 右
+     * 后序遍历：左 - 右 - 打印
+     */
+    static class Solution94 {
+        public static List<Integer> inorderTraversal(TreeNode root) {
+            List<Integer> res = new ArrayList<>();
+            mid(root, res);
+            return res;
+        }
+
+        static void mid(TreeNode root, List<Integer> res) {
+            if (null == root) {
+                return;
+            }
+            mid(root.left, res);
+            res.add(root.val);
+            mid(root.right, res);
+        }
+        public static void main(String[] args) {
+
+            Integer[] arr = {1, null, 2, 3};
+            TreeNode tree = TreeUtil.createTree(arr);
+            System.out.println(inorderTraversal(tree));
+
+        }
+    }
+
+
 }
 
 
