@@ -500,22 +500,44 @@ class Solution11 {
 
         }
 
+    }
 
-        public class ListNode {
-            int val;
-            ListNode next;
+    public class ListNode {
+        int val;
+        ListNode next;
 
-            ListNode() {
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    class Solution206 {
+        public ListNode reverseList(ListNode head) {
+
+            if (head == null) {
+                return null;
             }
-
-            ListNode(int val) {
-                this.val = val;
+            ListNode dummy = new ListNode(-1, head);
+            ListNode left = head;
+            ListNode right = head.next;
+            head.next = null;
+            while (right != null) {
+                dummy.next = right;
+                ListNode temp = right.next;
+                right.next = left;
+                left.next = null;
+                right = temp;
+                left = dummy.next;
             }
-
-            ListNode(int val, ListNode next) {
-                this.val = val;
-                this.next = next;
-            }
+            return dummy.next;
         }
     }
 
