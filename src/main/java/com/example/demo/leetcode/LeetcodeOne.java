@@ -687,6 +687,7 @@ public class LeetcodeOne {
             res.add(root.val);
             mid(root.right, res);
         }
+
         public static void main(String[] args) {
 
             Integer[] arr = {1, null, 2, 3};
@@ -696,6 +697,68 @@ public class LeetcodeOne {
         }
     }
 
+    /**
+     * 给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+     * <p>
+     * 返回滑动窗口中的最大值。
+     */
+//    static class Solution239 {
+//        public static int[] maxSlidingWindow(int[] nums, int k) {
+//            int length = nums.length;
+//            if (length <= k) {
+//                return new int[]{max(nums)};
+//            }
+//            int n = length + 1 - k;
+//            int[] res = new int[n];
+//            for (int i = 0; i < n; i++) {
+//                res[i] = max(Arrays.copyOfRange(nums, i, i + k));
+//            }
+//            return res;
+//        }
+//
+//        public static int max(int[] nums) {
+//            int temp = Integer.MIN_VALUE;
+//            for (int item : nums) {
+//                if (item > temp) {
+//                    temp = item;
+//                }
+//            }
+//            return temp;
+//        }
+//    }
+    static class Solution239 {
+        public static int[] maxSlidingWindow(int[] nums, int k) {
+            int n = nums.length;
+            PriorityQueue<int[]> maxHeap = new PriorityQueue<>((pair1, pair2) -> pair1[0] != pair2[0] ? pair2[0] - pair1[0] : pair2[1] - pair1[1]);
+            if (n <= k) {
+                for (int i = 0; i < n; i++) {
+                    maxHeap.add(new int[]{nums[i], i});
+                }
+                if (maxHeap.peek() != null) {
+                    return new int[]{maxHeap.peek()[0]};
+                }
+            }
+            int[] res = new int[n - k + 1];
+            for (int i = 0; i < n; i++) {
+                if (i < k - 1) {
+                    maxHeap.add(new int[]{nums[i], i});
+                } else {
+                    maxHeap.add(new int[]{nums[i], i});
+
+                    while (maxHeap.peek()[1] < i - k + 1) {
+                        maxHeap.poll();
+                    }
+                    res[i - k + 1] = maxHeap.peek()[0];
+                }
+            }
+            return res;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(Arrays.toString(Solution239.maxSlidingWindow(new int[]{1, 3, -1, -3, 5, 3, 6, 7}, 3)));
+    }
 
 }
 
