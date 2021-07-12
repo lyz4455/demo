@@ -1,6 +1,9 @@
 package com.example.demo.leetcode;
 
 
+import com.example.demo.common.TreeNode;
+import com.example.demo.common.TreeUtil;
+
 import java.util.*;
 
 /**
@@ -490,24 +493,6 @@ public class LeetcodeOne {
                 return length;
             }
         }
-
-        public class ListNode {
-            int val;
-            ListNode next;
-
-            ListNode() {
-            }
-
-            ListNode(int val) {
-                this.val = val;
-            }
-
-            ListNode(int val, ListNode next) {
-                this.val = val;
-                this.next = next;
-            }
-        }
-
     }
 
 
