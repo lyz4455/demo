@@ -1,8 +1,8 @@
-package com.example.demo.test.transactional;
+package com.example.demo.learnlab.transactional;
 
 import com.example.demo.domain.User;
 import com.example.demo.mapper.UserMapper;
-import com.example.demo.test.transactional.handler.AsyncService;
+import com.example.demo.learnlab.transactional.handler.AsyncService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

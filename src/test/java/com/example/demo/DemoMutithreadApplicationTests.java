@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.test.transactional.DemoMutithreadService;
+import com.example.demo.learnlab.transactional.DemoMutithreadService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

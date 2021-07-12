@@ -1,4 +1,4 @@
-package com.example.demo.test.lock;
+package com.example.demo.learnlab.lock;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

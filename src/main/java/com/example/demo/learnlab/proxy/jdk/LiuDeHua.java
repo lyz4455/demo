@@ -1,4 +1,4 @@
-package com.example.demo.test.proxy.jdk;
+package com.example.demo.learnlab.proxy.jdk;
 
 /**
  * @author yanzhongliu

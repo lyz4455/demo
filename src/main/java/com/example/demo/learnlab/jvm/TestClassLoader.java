@@ -1,4 +1,4 @@
-package com.example.demo.test.jvm;
+package com.example.demo.learnlab.jvm;
 
 public class TestClassLoader {
     private static int a =1;

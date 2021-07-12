@@ -1,6 +1,4 @@
-package com.example.demo.test.lock;
-
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
+package com.example.demo.learnlab.lock;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;

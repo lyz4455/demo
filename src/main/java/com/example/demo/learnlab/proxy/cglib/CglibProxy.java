@@ -1,8 +1,8 @@
-package com.example.demo.test.proxy.cglib;
+package com.example.demo.learnlab.proxy.cglib;
 
-import com.example.demo.test.proxy.jdk.LiuDeHua;
-import com.example.demo.test.proxy.jdk.Star;
-import com.example.demo.test.proxy.jdk.StarProxy;
+import com.example.demo.learnlab.proxy.jdk.LiuDeHua;
+import com.example.demo.learnlab.proxy.jdk.Star;
+import com.example.demo.learnlab.proxy.jdk.StarProxy;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;

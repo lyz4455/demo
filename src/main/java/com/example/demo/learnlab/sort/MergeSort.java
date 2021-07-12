@@ -1,4 +1,4 @@
-package com.example.demo.test.sort;
+package com.example.demo.learnlab.sort;
 
 import java.util.Arrays;
 
