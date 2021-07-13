@@ -4,8 +4,8 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
     password: 123456
-  activemq:
-    broker-url: tcp://localhost:61616
+#  activemq:
+#    broker-url: tcp://localhost:61616
 
 #mybatis:
 #  type-aliases-package: com.example.demo.domain
