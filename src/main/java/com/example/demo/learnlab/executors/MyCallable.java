@@ -15,7 +15,7 @@ public class MyCallable implements Callable {
 
         System.out.println("c我要一个教练");
         try {
-            Thread.sleep(2000);
+            Thread.sleep(8000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
