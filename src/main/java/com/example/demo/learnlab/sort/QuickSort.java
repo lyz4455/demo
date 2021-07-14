@@ -32,9 +32,9 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int [] a = {1,6,8,7,3,5,16,4,8,36,13,44};
-        QuickSort.qkSort(a,0,a.length-1);
-        for (int i:a) {
+        int[] a = {1, 6, 8, 7, 3, 5, 16, 4, 8, 36, 13, 44};
+        QuickSort.qkSort(a, 0, a.length - 1);
+        for (int i : a) {
             System.out.print(i + " ");
         }
     }
