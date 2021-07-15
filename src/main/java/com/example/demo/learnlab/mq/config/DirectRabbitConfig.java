@@ -46,6 +46,10 @@ public class DirectRabbitConfig {
         return BindingBuilder.bind(TestDirectQueue()).to(TestDirectExchange()).with("TestDirectRouting");
     }
 
+    /**
+     * 配置交换机 但是不绑定队列 测试回调确认函数用
+     * @return
+     */
     @Bean
     DirectExchange lonelyDirectExchange() {
         return new DirectExchange("lonelyDirectExchange");

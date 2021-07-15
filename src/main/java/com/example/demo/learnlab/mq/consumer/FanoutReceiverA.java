@@ -9,17 +9,15 @@ import java.util.Map;
 /**
  * @author yanzhongliu
  * @email yanzhongliu@ctrip.com
- * @date 2021-07-14 19:23
- * @description 监听的队列名称 TestDirectQueue
+ * @date 2021-07-15 16:15
  */
-
 @Component
-@RabbitListener(queues = "TestDirectQueue")
-public class DirectReceiverNew {
+@RabbitListener(queues = "fanout.A")
+public class FanoutReceiverA {
 
     @RabbitHandler
     public void process(Map testMessage) {
-        System.out.println("DirectReceiverNew消费者收到消息  : " + testMessage.toString());
+        System.out.println("FanoutReceiverA消费者收到消息  : " + testMessage.toString());
     }
 
 }
