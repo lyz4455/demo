@@ -1,4 +1,4 @@
-package com.example.demo.learnlab.mq.config;
+package com.example.demo.learnlab.mq.consumer;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -9,15 +9,14 @@ import java.util.Map;
 /**
  * @author yanzhongliu
  * @email yanzhongliu@ctrip.com
- * @date 2021-07-14 19:23
+ * @date 2021-07-15 15:39
  */
 @Component
-@RabbitListener(queues = "TestDirectQueue")//监听的队列名称 TestDirectQueue
-public class DirectReceiver {
+@RabbitListener(queues = "topic.man")
+public class TopicManReceiver {
 
     @RabbitHandler
     public void process(Map testMessage) {
-        System.out.println("DirectReceiver消费者收到消息  : " + testMessage.toString());
+        System.out.println("TopicManReceiver消费者收到消息  : " + testMessage.toString());
     }
-
 }

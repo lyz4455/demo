@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @date 2021-07-12 15:13
  */
 @Component
-public class Comsumer {
+public class ActiveComsumer {
 
     /**
      * 接受消息队列1消息

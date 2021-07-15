@@ -15,7 +15,7 @@ import javax.jms.Queue;
  * @date 2021-07-12 15:12
  */
 @RestController
-public class Producer {
+public class ActiveProducer {
 
     @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;

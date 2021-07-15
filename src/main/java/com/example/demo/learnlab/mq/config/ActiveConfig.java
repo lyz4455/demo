@@ -12,7 +12,7 @@ import javax.jms.Queue;
  * @date 2021-07-12 15:09
  */
 @Configuration
-public class Config {
+public class ActiveConfig {
 
     @Bean(name = "queue2")
     public Queue queue2() {
