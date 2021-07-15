@@ -37,10 +37,10 @@ public class MaxSubString {
         int index = 0;
         while (index < string.length()) {
             int k = string.indexOf(" ", index);
-            if(k < 0){
+            if (k < 0) {
                 return Math.max(max, string.length() - index);
             }
-            max = Math.max(max, k -index);
+            max = Math.max(max, k - index);
             index = k + Math.max(max + 2, 1);
         }
         return max;
