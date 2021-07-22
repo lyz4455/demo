@@ -3,9 +3,9 @@ package com.example.demo.common;
 import net.sourceforge.pinyin4j.PinyinHelper;
 
 /**
- * @author biyukun
- * @description TODO
- * @date 2020-07-23
+ * @author yanzhongliu
+ * @email yanzhongliu@ctrip.com
+ * @date 2021-06-24 17:51
  */
 public class PinYinUtil {
 

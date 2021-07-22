@@ -6,9 +6,9 @@ import org.joda.time.format.DateTimeFormatter;
 
 
 /**
- * @author biyukun
- * @description 时间工具类
- * @date 2020-05-15
+ * @author yanzhongliu
+ * @email yanzhongliu@ctrip.com
+ * @date 2021-06-24 17:51
  */
 public class DateTimeUtil {
 
