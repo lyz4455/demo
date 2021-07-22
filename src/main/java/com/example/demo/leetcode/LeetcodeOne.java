@@ -771,7 +771,7 @@ public class LeetcodeOne {
         private int capacity;
 
         public LRUCache(int capacity) {
-            super(capacity, 0.75f, true);
+            super(capacity, 0.75F, true);
             this.capacity = capacity;
         }
 
@@ -781,7 +781,7 @@ public class LeetcodeOne {
         }
 
         public void put(int key, int value) {
-            put(key, value);
+            super.put(key, value);
         }
 
         @Override
