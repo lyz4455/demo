@@ -114,6 +114,9 @@ public class  SnowFlakeNew implements Runnable {
             for (int i = 0; i < 100; i++) {
                 SnowFlakeNew snowFlake = new SnowFlakeNew(1L, 2L);
                 service.submit(snowFlake);
+                ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
+                concurrentHashMap.put("1",1);
+                concurrentHashMap.get("1");
             }
         }catch (Exception e){
             e.printStackTrace();

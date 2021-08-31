@@ -1,4 +1,4 @@
-package com.example.demo.learnlab.executors;
+package com.example.demo.learnlab.juc.executors;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
