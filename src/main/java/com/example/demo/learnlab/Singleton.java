@@ -7,22 +7,30 @@ package com.example.demo.learnlab;
  */
 public class Singleton {
 
-    private static Singleton singleton = new Singleton();
+    private static volatile Singleton singleton;
 
-    private Singleton(){
-
+    private Singleton() {
     }
 
-    public static synchronized Singleton getSingleton(){
-//        if(null == singleton){
-//            singleton = new Singleton();
-//        }
+    /**
+     * 双重校验锁
+     *
+     * @return Singleton
+     */
+    public static Singleton getSingleton() {
+        if (null == singleton) {
+            synchronized (Singleton.class) {
+                if (null == singleton) {
+                    singleton = new Singleton();
+                }
+            }
+        }
         return singleton;
     }
 
     public static void main(String[] args) {
         new Thread(() -> System.out.println(Singleton.getSingleton())).start();
-
-        System.out.println();
+        new Thread(() -> System.out.println(Singleton.getSingleton())).start();
+        new Thread(() -> System.out.println(Singleton.getSingleton())).start();
     }
 }
