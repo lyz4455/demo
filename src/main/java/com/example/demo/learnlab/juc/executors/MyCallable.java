@@ -1,6 +1,7 @@
 package com.example.demo.learnlab.juc.executors;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.FutureTask;
 
 /**
  * @author yanzhongliu
@@ -22,5 +23,12 @@ public class MyCallable implements Callable {
         System.out.println("c教练来了： " + Thread.currentThread().getName());
         System.out.println("c教我游泳,交完后，教练回到了游泳池");
         return i; //call方法可以有返回值
+    }
+
+    public static void main(String[] args) {
+        // futureTask是 callable和runnable之间的桥梁
+        MyCallable callable = new MyCallable();
+        FutureTask futureTask = new FutureTask(callable);
+        new Thread(futureTask).start();
     }
 }
